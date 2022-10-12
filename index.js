@@ -19,12 +19,6 @@ app.get('/hello/:name', (req, res) => {
     res.send(`Hola ${data.name}`)
 })
 
-app.get('/hello/:name', (req, res) => {
-    let data = req.params
-
-    res.send(`Hola ${data.name}`)
-})
-
 //MULTIPLES PARAMETROS
 app.get('/add/:x/:y', (req, res) => { //LOS PARAMS PUEDEN ESTAR SEPARADOS POR OTRAS RUTAS .../add/:x/otro/:y 
     const { x, y } = req.params
@@ -33,6 +27,15 @@ app.get('/add/:x/:y', (req, res) => { //LOS PARAMS PUEDEN ESTAR SEPARADOS POR OT
 
     res.send(`Resultado es: ${result}`)
 
+})
+
+app.get('/search', (req, res) => {
+    const query = req.query.q
+    if (query !== undefined && query !== ''){
+        res.send(`Estás buscando ${query} `)
+    }else{
+        res.send('No sé qué estás buscando')
+    }
 })
 
 app.listen(3000)
